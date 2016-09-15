@@ -24,6 +24,7 @@ import java.io.File;
 import java.util.Locale;
 
 public class AndroidContext implements Context {
+
     private android.content.Context wrappedContext;
     private NetworkReachabilityManager networkReachabilityManager;
 
