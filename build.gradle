@@ -1,0 +1,85 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+group = 'com.github.prasannakumark'
+
+// This property value is for couchbase-lite-java-forestdb
+ext.spec = "android"
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.0'
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven { url 'http://files.couchbase.com/maven2/' }
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    // workaround for "duplicate files during packaging of APK" issue
+    // see https://groups.google.com/d/msg/adt-dev/bl5Rc4Szpzg/wC8cylTWuIEJ
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+}
+
+def buildAndroidWithArtifacts = System.getProperty("buildAndroidWithArtifacts")
+
+dependencies {
+    compile buildAndroidWithArtifacts == null ?
+            project(':libraries:couchbase-lite-java-core') :
+            'com.couchbase.lite:couchbase-lite-java-core:' + version
+
+    compile buildAndroidWithArtifacts == null ?
+            project(':libraries:couchbase-lite-java-native:sqlite-custom') :
+            'com.couchbase.lite:couchbase-lite-android-sqlite-custom:' + version
+
+    // Libraries required for tests only:
+    androidTestCompile buildAndroidWithArtifacts == null ?
+            project(':libraries:couchbase-lite-java-native:sqlcipher') :
+            'com.couchbase.lite:couchbase-lite-android-sqlcipher:' + version
+
+    androidTestCompile buildAndroidWithArtifacts == null ?
+            project(':libraries:couchbase-lite-java-forestdb') :
+            'com.couchbase.lite:couchbase-lite-android-forestdb:' + version
+
+    androidTestCompile 'commons-io:commons-io:2.0.1'
+    androidTestCompile 'com.squareup.okhttp3:mockwebserver:3.3.1'
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives sourcesJar
+}
