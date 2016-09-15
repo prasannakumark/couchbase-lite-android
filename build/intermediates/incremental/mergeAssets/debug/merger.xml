@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/Prasanna/Desktop/CBLLib/couchbase-lite-android/src/main/assets"><file name="icudt53l.zip" path="/Users/Prasanna/Desktop/CBLLib/couchbase-lite-android/src/main/assets/icudt53l.zip"/></source></dataSet><dataSet config="debug"><source path="/Users/Prasanna/Desktop/CBLLib/couchbase-lite-android/src/debug/assets"/></dataSet></merger>
