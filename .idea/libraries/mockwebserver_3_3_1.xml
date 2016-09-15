@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mockwebserver-3.3.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/mockwebserver/3.3.1/fb34b7b845db6be445161f148be96f6a039f36b5/mockwebserver-3.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

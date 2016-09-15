@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="couchbase-lite-java-core.couchbase-lite-java-core">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libraries/couchbase-lite-java-core/build/libs/couchbase-lite-java-core.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
